@@ -1,4 +1,6 @@
-﻿using Movie.Business.Manager.Model.Genre;
+﻿using Movie.Business.Manager.Model.Actor;
+using Movie.Business.Manager.Model.Genre;
+using Movie.UI.Model.ViewModel.Actor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,7 @@ namespace Movie.UI.Model.ViewModel.Film
         public decimal Imdb { get; set; }
         public DateTime RealeseDate { get; set; }
         public ICollection<GenreDTO> Genres { get; set; }
+        public ICollection<ActorForFilmDTO> Actors { get; set; }
 
     }
 }

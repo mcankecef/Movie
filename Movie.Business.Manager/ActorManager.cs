@@ -1,15 +1,12 @@
 ﻿using AutoMapper;
 using Movie.Business.Manager.Infrastructure;
 using Movie.Business.Manager.Model.Actor;
-using Movie.Business.Manager.Model.Genre;
 using Movie.Core.Exception.BusinessException;
 using Movie.Core.Exception.DatabaseException;
 using Movie.Data.MSSQL.Entity;
 using Movie.Data.MSSQL.Repository.Infrastructure;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Movie.Business.Manager
@@ -24,11 +21,11 @@ namespace Movie.Business.Manager
             _mapper = mapper;
         }
         #region Get
-        public async Task<IEnumerable<ListActorDTO>> GetAllFilm()
+        public async Task<IEnumerable<ListActorDTO>> GetAllActor()
         {
             try
             {
-                var actorList = await GetAllEntityFilm();
+                var actorList = await GetAllEntityActor();
                 var actorListDTO = _mapper.Map<IEnumerable<ListActorDTO>>(actorList);
                 return actorListDTO;
             }
@@ -40,7 +37,7 @@ namespace Movie.Business.Manager
             
 
         }
-        public async Task<IEnumerable<Actor>> GetAllEntityFilm()
+        public async Task<IEnumerable<Actor>> GetAllEntityActor()
         {
             try
             {
@@ -59,12 +56,12 @@ namespace Movie.Business.Manager
 
         #endregion
         #region Post
-        public async Task<CreateActorDTO> CreateFilmAsync(CreateActorDTO actor)
+        public async Task<CreateActorDTO> CreateActorAsync(CreateActorDTO actor)
         {
             try
             {
                 var entity = _mapper.Map<Actor>(actor);
-                entity = await CreateFilmEntityAsync(entity);
+                entity = await CreateActorEntityAsync(entity);
                 var actorDTO = _mapper.Map<CreateActorDTO>(entity);
 
                 return actorDTO;
@@ -76,7 +73,7 @@ namespace Movie.Business.Manager
             }
            
         }
-        private async Task<Actor> CreateFilmEntityAsync(Actor actor)
+        private async Task<Actor> CreateActorEntityAsync(Actor actor)
         {
             try
             {
@@ -90,6 +87,105 @@ namespace Movie.Business.Manager
             }
            
         }
+        #endregion
+        #region GetById
+        public async Task<ActorDTO> GetActorByIdAsync(int id)
+        {
+            try
+            {
+                var actorEntity = await GetActorEntityByIdAsync(id);
+                var actorDTO = _mapper.Map<ActorDTO>(actorEntity);
+                return actorDTO;
+            }
+            catch (Exception ex)
+            {
+
+                throw new BusinessException(ex.Message,ex);
+            }
+           
+        }
+        private async Task<Actor> GetActorEntityByIdAsync(int id)
+        {
+            try
+            {
+                var entity = await _actorRepository.GetByIdAsync(id);
+                return entity;
+            }
+            catch (Exception ex)
+            {
+
+                throw new DatabaseException(ex.Message,ex);
+            }
+            
+        }
+        #endregion
+        #region Update
+        public async Task UpdateActorAsync(UpdateActorDTO actor)
+        {
+            try
+            {
+                var entity =await GetActorEntityByIdAsync(actor.Id);
+
+                if (entity is null)
+                {
+                    throw new BusinessException("Not Found");
+                }
+                entity = _mapper.Map(actor, entity);
+                await UpdateActorEntityAsync(entity);
+            }
+            catch (Exception ex)
+            {
+
+                throw new BusinessException(ex.Message,ex);
+            }
+            
+
+            
+        }
+        public async Task<int> UpdateActorEntityAsync(Actor actor)
+        {
+            var updateActor =await _actorRepository.UpdateAsync(actor);
+            return updateActor;
+        }
+
+
+
+        #endregion
+        #region Delete
+
+
+        public async Task DeleteActorByIdAsync(int id)
+        {
+            try
+            {
+                var entity = await _actorRepository.GetByIdAsync(id);
+                if (entity is null)
+                {
+                    throw new BusinessException("Not Found");
+                }
+                await _actorRepository.DeleteAsync(entity);
+            }
+            catch (Exception ex)
+            {
+
+                throw new BusinessException(ex.Message, ex);
+            }
+        }
+        public async Task<int> DeleteActorEntityByIdAsync(Actor actor)
+        {
+            try
+            {
+                var result = await _actorRepository.DeleteAsync(actor);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+
+                throw new DatabaseException(ex.Message, ex);
+            }
+        }
+
         #endregion
 
     }

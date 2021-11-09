@@ -20,7 +20,9 @@ namespace Movie.Data.MSSQL.Repository.Entityframework
         public async Task<IEnumerable<Film>> GetAllFilm()
         {
             return await _context.Set<Film>()
-                .Where(x => x.Status).Include(x=>x.Genres)
+                .Where(x => x.Status)
+                .Include(x=>x.Genres)
+                .Include(x=>x.Actors)
                 .ToListAsync();
         }
         public async Task<Film> FilmInsertAsync(Film film)

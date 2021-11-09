@@ -26,7 +26,8 @@ namespace Movie.Mapper.Profiles
                 .ForMember(x=>x.Films,opt=>opt.MapFrom(x=>x.Films));
             //Film Map Profile
             CreateMap<Film, FilmDTO>()
-                .ForMember(x => x.Genres, opt => opt.MapFrom(x => x.Genres));
+                .ForMember(x => x.Genres, opt => opt.MapFrom(x => x.Genres))
+                .ForMember(x => x.Actors, opt=>opt.MapFrom(x=>x.Actors));
             CreateMap<Film, FilmForGenreDTO>()
                 .ForMember(x => x.Name, opt => opt.MapFrom(x => x.Name));
 
@@ -38,7 +39,13 @@ namespace Movie.Mapper.Profiles
             CreateMap<Film, FilmForActorDTO>()
                 .ForMember(x => x.Name, opt => opt.MapFrom(x => x.Name));
 
+            CreateMap<Actor, ActorForFilmDTO>();
+
             CreateMap<CreateActorDTO, Actor>().ReverseMap();
+            CreateMap<Actor, ActorDTO>();
+
+            CreateMap<UpdateActorDTO, Actor>();
+
         }
     }
 }

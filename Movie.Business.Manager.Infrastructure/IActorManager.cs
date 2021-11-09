@@ -10,7 +10,12 @@ namespace Movie.Business.Manager.Infrastructure
 {
     public interface IActorManager
     {
-        Task<IEnumerable<ListActorDTO>> GetAllFilm();
-        Task<CreateActorDTO> CreateFilmAsync(CreateActorDTO actor);
+        Task<IEnumerable<ListActorDTO>> GetAllActor();
+        Task<CreateActorDTO> CreateActorAsync(CreateActorDTO actor);
+        Task<ActorDTO> GetActorByIdAsync(int id);
+        Task UpdateActorAsync(UpdateActorDTO actor);
+        Task DeleteActorByIdAsync(int id);
+
+
     }
 }
