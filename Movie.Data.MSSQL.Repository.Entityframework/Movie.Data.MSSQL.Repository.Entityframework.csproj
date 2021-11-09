@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Movie.Data.MSSQL.Repository.Entityframework.Base\Movie.Data.MSSQL.Repository.Entityframework.Base.csproj" />
+    <ProjectReference Include="..\Movie.Data.MSSQL.Repository.Infrastructure\Movie.Data.MSSQL.Repository.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

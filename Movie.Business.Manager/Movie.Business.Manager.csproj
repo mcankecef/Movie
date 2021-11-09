@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Movie.Business.Manager.Infrastructure\Movie.Business.Manager.Infrastructure.csproj" />
+    <ProjectReference Include="..\Movie.Core.Exception.BusinessException\Movie.Core.Exception.BusinessException.csproj" />
+    <ProjectReference Include="..\Movie.Core.Exception.DatabaseException\Movie.Core.Exception.DatabaseException.csproj" />
+    <ProjectReference Include="..\Movie.Data.MSSQL.Repository.Entityframework\Movie.Data.MSSQL.Repository.Entityframework.csproj" />
+    <ProjectReference Include="..\Movie.Data.MSSQL.Repository.Infrastructure\Movie.Data.MSSQL.Repository.Infrastructure.csproj" />
+    <ProjectReference Include="..\Movie.Mapper\Movie.Mapper.csproj" />
+  </ItemGroup>
+
+</Project>

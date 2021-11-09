@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Movie.Core.Exception.Base\Movie.Core.Exception.Base.csproj" />
+  </ItemGroup>
+
+</Project>

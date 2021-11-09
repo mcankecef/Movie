@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Movie.Core.Data.Repository.Infrastructure\Movie.Core.Data.Repository.Infrastructure.csproj" />
+    <ProjectReference Include="..\Movie.Data.MSSQL.Context.Entityframework\Movie.Data.MSSQL.Context.Entityframework.csproj" />
+  </ItemGroup>
+
+</Project>
