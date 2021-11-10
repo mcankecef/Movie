@@ -22,6 +22,7 @@
     <ProjectReference Include="..\Movie.Business.Manager.Infrastructure\Movie.Business.Manager.Infrastructure.csproj" />
     <ProjectReference Include="..\Movie.Business.Manager\Movie.Business.Manager.csproj" />
     <ProjectReference Include="..\Movie.Data.MSSQL.Context.Entityframework\Movie.Data.MSSQL.Context.Entityframework.csproj" />
+    <ProjectReference Include="..\Movie.Data.MSSQL.Validation\Movie.Data.MSSQL.Validation.csproj" />
     <ProjectReference Include="..\Movie.Mapper\Movie.Mapper.csproj" />
     <ProjectReference Include="..\Movie.UI.Model.ViewModel\Movie.UI.Model.ViewModel.csproj" />
   </ItemGroup>

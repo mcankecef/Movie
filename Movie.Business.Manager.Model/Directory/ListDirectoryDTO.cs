@@ -1,19 +1,18 @@
-﻿using System;
+﻿using Movie.Business.Manager.Model.Film;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Movie.Business.Manager.Model.Actor
+namespace Movie.Business.Manager.Model.Directory
 {
-    public class CreateActorDTO
+    public class ListDirectoryDTO
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Description { get; set; }
-        public float Height { get; set; }
         public DateTime BirthOfDate { get; set; }
+        public ICollection<FilmForDirectoryDTO> Films { get; set; }
     }
 }

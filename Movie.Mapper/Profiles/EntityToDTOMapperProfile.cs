@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Movie.Business.Manager.Model.Actor;
+using Movie.Business.Manager.Model.Directory;
 using Movie.Business.Manager.Model.Film;
 using Movie.Business.Manager.Model.Genre;
 using Movie.Data.MSSQL.Entity;
@@ -25,9 +26,11 @@ namespace Movie.Mapper.Profiles
             CreateMap<Genre, ListGenreDTO>()
                 .ForMember(x=>x.Films,opt=>opt.MapFrom(x=>x.Films));
             //Film Map Profile
+            //Film tablosuna ilişki get'lerken kullandığım map
             CreateMap<Film, FilmDTO>()
                 .ForMember(x => x.Genres, opt => opt.MapFrom(x => x.Genres))
-                .ForMember(x => x.Actors, opt=>opt.MapFrom(x=>x.Actors));
+                .ForMember(x => x.Actors, opt=>opt.MapFrom(x=>x.Actors))
+                .ForMember(x=>x.Directories,opt=>opt.MapFrom(x=>x.Directories));
             CreateMap<Film, FilmForGenreDTO>()
                 .ForMember(x => x.Name, opt => opt.MapFrom(x => x.Name));
 
@@ -45,6 +48,23 @@ namespace Movie.Mapper.Profiles
             CreateMap<Actor, ActorDTO>();
 
             CreateMap<UpdateActorDTO, Actor>();
+
+            //Directory Map Profile
+
+            //Get
+            CreateMap<Directory, ListDirectoryDTO>()
+                .ForMember(x=>x.Films,opt=>opt.MapFrom(x=>x.Films));
+            CreateMap<Film, FilmForDirectoryDTO>()
+                .ForMember(x=>x.Name,opt=>opt.MapFrom(x=>x.Name));
+
+            //Insert
+            CreateMap<CreateDirectoryDTO, Directory>().ReverseMap();
+
+            //GetById
+            CreateMap<Directory, DirectoryDTO>();
+
+            //Update
+            CreateMap<UpdateDirectoryDTO, Directory>();
 
         }
     }

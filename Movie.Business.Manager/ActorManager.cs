@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using Movie.Business.Manager.Infrastructure;
 using Movie.Business.Manager.Model.Actor;
 using Movie.Core.Exception.BusinessException;
@@ -15,10 +16,12 @@ namespace Movie.Business.Manager
     {
         private readonly IActorRepository _actorRepository;
         private readonly IMapper _mapper;
-        public ActorManager(IActorRepository actorRepository, IMapper mapper)
+        private readonly IValidator<Actor> _actorValidator;
+        public ActorManager(IActorRepository actorRepository, IMapper mapper,IValidator<Actor> actorValidator)
         {
             _actorRepository = actorRepository;
             _mapper = mapper;
+            _actorValidator = actorValidator;
         }
         #region Get
         public async Task<IEnumerable<ListActorDTO>> GetAllActor()
@@ -61,6 +64,11 @@ namespace Movie.Business.Manager
             try
             {
                 var entity = _mapper.Map<Actor>(actor);
+                var validation = await _actorValidator.ValidateAsync(entity);
+                if (!validation.IsValid)
+                {
+                    throw new BusinessException(validation.ToString("\n"));
+                }
                 entity = await CreateActorEntityAsync(entity);
                 var actorDTO = _mapper.Map<CreateActorDTO>(entity);
 
@@ -130,6 +138,11 @@ namespace Movie.Business.Manager
                 {
                     throw new BusinessException("Not Found");
                 }
+                var validation = await _actorValidator.ValidateAsync(entity);
+                if (!validation.IsValid)
+                {
+                    throw new BusinessException(validation.ToString("\n"));
+                }
                 entity = _mapper.Map(actor, entity);
                 await UpdateActorEntityAsync(entity);
             }
@@ -142,7 +155,7 @@ namespace Movie.Business.Manager
 
             
         }
-        public async Task<int> UpdateActorEntityAsync(Actor actor)
+        private async Task<int> UpdateActorEntityAsync(Actor actor)
         {
             var updateActor =await _actorRepository.UpdateAsync(actor);
             return updateActor;

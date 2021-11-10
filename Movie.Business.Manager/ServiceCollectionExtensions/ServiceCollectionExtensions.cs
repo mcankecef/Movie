@@ -12,14 +12,16 @@ namespace Movie.Business.Manager.ServiceCollectionExtensions
             this IServiceCollection services)
         {
             services.AddScoped<IGenreManager, GenreManager>();
-            services.AddScoped<IFilmManager, FilmManager>();
-
             services.AddScoped<IGenreRepository, GenreRepository>();
+
+            services.AddScoped<IFilmManager, FilmManager>();
             services.AddScoped<IFilmRepository, FilmRepository>();
-            services.AddScoped<IGenreManager, GenreManager>();
 
             services.AddScoped<IActorRepository, ActorRepository>();
             services.AddScoped<IActorManager, ActorManager>();
+
+            services.AddScoped<IDirectoryRepository, DirectoryRepository>();
+            services.AddScoped<IDirectoryManager, DirectoryManager>();
 
             return services;
         }

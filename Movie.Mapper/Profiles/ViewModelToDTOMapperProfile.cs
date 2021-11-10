@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Movie.Business.Manager.Model.Actor;
+using Movie.Business.Manager.Model.Directory;
 using Movie.Business.Manager.Model.Film;
 using Movie.Business.Manager.Model.Genre;
 using Movie.UI.Model.ViewModel.Actor;
+using Movie.UI.Model.ViewModel.Directory;
 using Movie.UI.Model.ViewModel.Film;
 using Movie.UI.Model.ViewModel.Genre;
 using System;
@@ -34,7 +36,8 @@ namespace Movie.Mapper.Profiles
 
             CreateMap<FilmDTO, FilmVM>()
                                 .ForMember(x => x.Genres, opt => opt.MapFrom(x => x.Genres))
-                                .ForMember(x=>x.Actors, opt => opt.MapFrom(x=>x.Actors));
+                                .ForMember(x=>x.Actors, opt => opt.MapFrom(x=>x.Actors))
+                                .ForMember(x=>x.Directories ,opt=>opt.MapFrom(x=>x.Directories));
 
             CreateMap<FilmForGenreDTO, ListFilmVM>()
                 .ForMember(x => x.Name, opt => opt.MapFrom(x => x.Name));
@@ -53,6 +56,25 @@ namespace Movie.Mapper.Profiles
             CreateMap<ActorDTO, ActorVM>();
             CreateMap<UpdateActorVM, CreateActorVM>();
             CreateMap<UpdateActorVM, UpdateActorDTO>();
+
+            //Directory Map Profile
+
+            //Get
+            CreateMap<ListDirectoryDTO, ListDirectoryVM>()
+                .ForMember(x => x.Films, opt => opt.MapFrom(x => x.Films));
+            CreateMap<FilmForDirectoryDTO, ListFilmVM>()
+                .ForMember(x => x.Name, opt => opt.MapFrom(x => x.Name));
+
+            //Insert
+            CreateMap<CreateDirectoryVM, CreateDirectoryDTO>();
+            CreateMap<CreateDirectoryDTO, DirectoryVM>();
+
+            //GetById
+            CreateMap<DirectoryDTO, DirectoryVM>();
+
+            //Update
+            CreateMap<UpdateDirectoryVM, CreateDirectoryDTO>();
+            CreateMap<UpdateDirectoryVM, UpdateDirectoryDTO>();
 
 
 

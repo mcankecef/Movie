@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using Movie.Business.Manager.Infrastructure;
 using Movie.Business.Manager.Model.Film;
 using Movie.Core.Exception.BusinessException;
@@ -15,11 +16,13 @@ namespace Movie.Business.Manager
     {
         private readonly IFilmRepository _filmRepository;
         private readonly IMapper _mapper;
+        private readonly IValidator<Film> _filmValidator;
 
-        public FilmManager(IFilmRepository filmRepository,IMapper mapper)
+        public FilmManager(IFilmRepository filmRepository,IMapper mapper,IValidator<Film> filmValidator)
         {
             _filmRepository = filmRepository;
             _mapper = mapper;
+            _filmValidator = filmValidator;
         }
 
         
@@ -59,7 +62,11 @@ namespace Movie.Business.Manager
             try
             {
                 var filmEntity = _mapper.Map<Film>(film);
-
+                var validation = await _filmValidator.ValidateAsync(filmEntity);
+                if (!validation.IsValid)
+                {
+                    throw new BusinessException(validation.ToString("\n"));
+                }
                 filmEntity = await CreateFilmEntityAsync(filmEntity);
 
                 var filmDTO = _mapper.Map<FilmDTO>(filmEntity);

@@ -1,5 +1,7 @@
 ﻿using Movie.Core.Data.Repository.Infrastructure;
 using Movie.Data.MSSQL.Entity;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Movie.Data.MSSQL.Repository.Infrastructure
 {
@@ -9,5 +11,6 @@ namespace Movie.Data.MSSQL.Repository.Infrastructure
         IUpdatableRepository<Directory>,
         IDeletableRepository<Directory, int>
     {
+        Task<IEnumerable<Directory>> GetAllDirectory();
     }
 }

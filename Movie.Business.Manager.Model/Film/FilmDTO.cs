@@ -1,4 +1,5 @@
 ﻿using Movie.Business.Manager.Model.Actor;
+using Movie.Business.Manager.Model.Directory;
 using Movie.Business.Manager.Model.Genre;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace Movie.Business.Manager.Model.Film
         public DateTime RealeseDate { get; set; }
         public ICollection<GenreDTO> Genres { get; set; }
         public ICollection<ActorForFilmDTO> Actors { get; set; }
+        public ICollection<DirectoryForFilmDTO> Directories { get; set; }
 
 
     }

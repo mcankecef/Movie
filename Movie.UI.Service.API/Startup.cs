@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Movie.Business.Manager.ServiceCollectionExtensions;
 using Movie.Data.MSSQL.Context.Entityframework;
+using Movie.Data.MSSQL.Validation.ServiceCollectionExtensions;
 using Movie.Mapper.ServicesCollectionExtesions;
 using Newtonsoft.Json;
 
@@ -27,7 +28,11 @@ namespace Movie.UI.Service.API
             services.AddDbContext<MovieDbContext>(op =>
               op.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddControllers().AddNewtonsoftJson(opt=>opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+            services.AddControllers()
+                .AddMSSQLValidator(services)
+                .AddNewtonsoftJson(opt=>
+                opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Movie.UI.Service.API", Version = "v1" });

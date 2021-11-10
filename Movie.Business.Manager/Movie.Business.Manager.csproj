@@ -14,6 +14,7 @@
     <ProjectReference Include="..\Movie.Core.Exception.DatabaseException\Movie.Core.Exception.DatabaseException.csproj" />
     <ProjectReference Include="..\Movie.Data.MSSQL.Repository.Entityframework\Movie.Data.MSSQL.Repository.Entityframework.csproj" />
     <ProjectReference Include="..\Movie.Data.MSSQL.Repository.Infrastructure\Movie.Data.MSSQL.Repository.Infrastructure.csproj" />
+    <ProjectReference Include="..\Movie.Data.MSSQL.Validation\Movie.Data.MSSQL.Validation.csproj" />
     <ProjectReference Include="..\Movie.Mapper\Movie.Mapper.csproj" />
   </ItemGroup>
 

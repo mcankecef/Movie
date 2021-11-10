@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using Movie.Business.Manager.Infrastructure;
 using Movie.Business.Manager.Model.Genre;
 using Movie.Core.Exception.BusinessException;
@@ -15,10 +16,12 @@ namespace Movie.Business.Manager
     {
         private readonly IMapper _mapper;
         private readonly IGenreRepository _genreRepository;
-        public GenreManager(IGenreRepository genreRepository, IMapper mapper)
+        private readonly IValidator<Genre> _genreValidator;
+        public GenreManager(IGenreRepository genreRepository, IMapper mapper, IValidator<Genre> genreValidator)
         {
             _mapper = mapper;
             _genreRepository = genreRepository;
+            _genreValidator = genreValidator;
         }
         #region Create
         public async Task<GenreDTO> CreateGenreAsync(CreateGenreDTO genreDto)
@@ -26,7 +29,11 @@ namespace Movie.Business.Manager
             try
             {
                 var entity = _mapper.Map<Genre>(genreDto);
-
+                var validation = await _genreValidator.ValidateAsync(entity);
+                if (!validation.IsValid)
+                {
+                    throw new BusinessException(validation.ToString("\n"));
+                }
                 entity = await CreateGenreEntityAsync(entity);
 
                 var entityDTO = _mapper.Map<GenreDTO>(entity);
@@ -94,8 +101,12 @@ namespace Movie.Business.Manager
             try
             {
                 var entity = await GetGenreByIdEntityAsync(genre.Id);
-
-                if(entity is null)
+                var validation = await _genreValidator.ValidateAsync(entity);
+                if (!validation.IsValid)
+                {
+                    throw new BusinessException(validation.ToString("\n"));
+                }
+                if (entity is null)
                 {
                     throw new BusinessException("Not Found");
                 }
