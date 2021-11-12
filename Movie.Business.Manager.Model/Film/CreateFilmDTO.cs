@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Movie.UI.Model.ViewModel.Film
+namespace Movie.Business.Manager.Model.Film
 {
-    public class CreateFilmVM
+    public class CreateFilmDTO
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Imdb { get; set; }

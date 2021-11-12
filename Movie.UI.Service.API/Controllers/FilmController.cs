@@ -27,17 +27,52 @@ namespace Movie.UI.Service.API.Controllers
 
             return filmListVM;
         }
+        [HttpGet("{id}")]
+        public async Task<FilmVM> GetById(int id)
+        {
+            var filmDTO = await _filmManager.GetFilmByIdAsync(id);
+            var filmVM = _mapper.Map<FilmVM>(filmDTO);
+
+            return filmVM;
+        }
         [HttpPost]
-        public async Task<IActionResult> Post(CreateFilmVM createFilmVM)
+        public async Task<IActionResult> Post(FilmDTO createFilmVM)
         {
             var filmDTO = _mapper.Map<FilmDTO>(createFilmVM);
-
             filmDTO =await _filmManager.CreateFilmAsync(filmDTO);
-
             var filmVM = _mapper.Map<FilmVM>(filmDTO);
 
             return CreatedAtAction(nameof(GetAll),new { id =filmVM.Id},filmVM);
 
+        }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(FilmVM updateFilmVM, int id)
+        {
+            var film = await _filmManager.GetFilmByIdAsync(id);
+            if (film is null)
+            {
+                return await Post(_mapper.Map<FilmDTO>(updateFilmVM));
+            }
+            var updateFilmDTO = _mapper.Map<FilmDTO>(updateFilmVM);
+            updateFilmDTO.Id = id;
+            await _filmManager.UpdateFilmAsync(updateFilmDTO);
+
+
+            return NoContent();
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var film = await _filmManager.GetFilmByIdAsync(id);
+
+            if (film is null)
+            {
+                return NotFound();
+            }
+
+            await _filmManager.DeleteFilmByIdAsync(id);
+
+            return NoContent();
         }
     }
 }

@@ -10,5 +10,6 @@ namespace Movie.Business.Manager.Model.Actor
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Description { get; set; }
     }
 }

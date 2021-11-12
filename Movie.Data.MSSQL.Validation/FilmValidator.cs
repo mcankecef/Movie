@@ -14,9 +14,7 @@ namespace Movie.Data.MSSQL.Validation
             RuleFor(film => film.Imdb)
                 .NotNull()
                 .NotEmpty();
-            RuleFor(film => film.ReleaseDate)
-                .NotNull()
-                .NotEmpty();
+
 
         }
     }

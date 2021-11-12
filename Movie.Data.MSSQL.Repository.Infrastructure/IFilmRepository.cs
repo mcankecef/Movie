@@ -16,5 +16,11 @@ namespace Movie.Data.MSSQL.Repository.Infrastructure
     {
         Task<IEnumerable<Film>> GetAllFilm();
         Task<Film> FilmInsertAsync(Film film);
+        Task<Film> FilmGetByIdAsync(int id);
+        Task<int> FilmUpdateAsync(Film film);
+        Task<int> FilmDeleteAsync(Film film);
+        Task<int> FilmDeleteByIdAsync(int id);
+
+
     }
 }

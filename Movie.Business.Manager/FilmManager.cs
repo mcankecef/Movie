@@ -57,16 +57,18 @@ namespace Movie.Business.Manager
         }
         #endregion
         #region Post
-        public async Task<FilmDTO> CreateFilmAsync(FilmDTO film)
+        public async Task<FilmDTO> CreateFilmAsync(FilmDTO createFilm)
         {
             try
             {
-                var filmEntity = _mapper.Map<Film>(film);
+                var filmEntity = _mapper.Map<Film>(createFilm);
+
                 var validation = await _filmValidator.ValidateAsync(filmEntity);
                 if (!validation.IsValid)
                 {
                     throw new BusinessException(validation.ToString("\n"));
                 }
+
                 filmEntity = await CreateFilmEntityAsync(filmEntity);
 
                 var filmDTO = _mapper.Map<FilmDTO>(filmEntity);
@@ -95,7 +97,94 @@ namespace Movie.Business.Manager
             }
             
         }
-
         #endregion
+        #region GetById
+        public async Task<FilmDTO> GetFilmByIdAsync(int id)
+        {
+            try
+            {
+                var entity = await GetFilmEntityByIdAsync(id);
+                var filmDTO = _mapper.Map<FilmDTO>(entity);
+                return filmDTO;
+            }
+            catch (Exception ex)
+            {
+
+                throw new BusinessException(ex.Message, ex);
+            }
+        }
+        public async Task<Film> GetFilmEntityByIdAsync(int id)
+        {
+            try
+            {
+                var entity = await _filmRepository.FilmGetByIdAsync(id);
+                return entity;
+            }
+            catch (Exception ex)
+            {
+
+                throw new DatabaseException(ex.Message, ex);
+            }
+        }
+        #endregion
+        #region Update
+        public async Task UpdateFilmAsync(FilmDTO film)
+        {
+            try
+            {
+                var entity = await _filmRepository.FilmGetByIdAsync(film.Id);
+                if (entity is null)
+                {
+                    throw new BusinessException("Not Found");
+                }
+                //var validation =  _filmValidator.ValidateAsync(film);
+                //if (!validation.IsValid)
+                //{
+                //    throw new BusinessException(validation.ToString("\n"));
+                //}
+                entity = _mapper.Map(film, entity);
+                await UpdateFilmEntityAsync(entity);
+            }
+            catch (Exception ex)
+            {
+
+                throw new BusinessException(ex.Message, ex);
+            }
+        }
+        public Task UpdateFilmEntityAsync(Film film)
+        {
+            try
+            {
+                var entity = _filmRepository.FilmUpdateAsync(film);
+
+                return entity;
+            }
+            catch (Exception ex)
+            {
+
+                throw new DatabaseException(ex.Message, ex);
+            }
+        }
+        #endregion
+        #region Delete
+        public async Task DeleteFilmByIdAsync(int id)
+        {
+            try
+            {
+                var entity = await _filmRepository.FilmGetByIdAsync(id);
+                if (entity is null)
+                {
+                    throw new BusinessException("Not Found");
+                }
+                await _filmRepository.FilmDeleteAsync(entity);
+            }
+            catch (Exception ex)
+            {
+
+                throw new BusinessException(ex.Message, ex);
+            }
+        }
+        #endregion
+
     }
 }

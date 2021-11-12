@@ -11,8 +11,8 @@ namespace Movie.Business.Manager.Infrastructure
     {
         Task<FilmDTO> CreateFilmAsync(FilmDTO film);
         Task<IEnumerable<FilmDTO>> GetAllFilm();
-        //Task UpdateGenreAsync(UpdateGenreDTO genre);
-        //Task<GenreDTO> GetGenreByIdAsync(int id);
-        //Task DeleteGenreByIdAsync(int id);
+        Task UpdateFilmAsync(FilmDTO film);
+        Task<FilmDTO> GetFilmByIdAsync(int id);
+        Task DeleteFilmByIdAsync(int id);
     }
 }
