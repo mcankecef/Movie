@@ -26,7 +26,7 @@ namespace Movie.Data.MSSQL.Context.Entityframework
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-PPIBP5O;Database=movieDb;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-PPIBP5O;Database=movieTestDb;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -3,6 +3,7 @@ using Movie.Business.Manager.Model.Actor;
 using Movie.Business.Manager.Model.Directory;
 using Movie.Business.Manager.Model.Film;
 using Movie.Business.Manager.Model.Genre;
+using Movie.Business.Manager.Model.User;
 using Movie.Data.MSSQL.Entity;
 using System;
 using System.Collections.Generic;
@@ -75,7 +76,13 @@ namespace Movie.Mapper.Profiles
 
             //Update
             CreateMap<UpdateDirectoryDTO, Directory>();
-            
+
+
+            //User Map Profiles
+
+            CreateMap<UserRegisterDTO, User>();
+            CreateMap<User, UserProfileDTO>();
+            CreateMap<UserLoginDTO, User>();
         }
     }
 }

@@ -59,19 +59,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Movie.Data.MSSQL.Repository
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Movie.Mapper", "Movie.Mapper", "{385D6739-D6E8-45EA-85C0-5A84988C2ECE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movie.Mapper", "Movie.Mapper\Movie.Mapper.csproj", "{F6B9698E-DD25-4616-9617-EB0D8C3CA091}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Movie.Mapper", "Movie.Mapper\Movie.Mapper.csproj", "{F6B9698E-DD25-4616-9617-EB0D8C3CA091}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Movie.UI.Model", "Movie.UI.Model", "{F62720C1-553E-44AE-869C-1C19E6E67153}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movie.UI.Model.ViewModel", "Movie.UI.Model.ViewModel\Movie.UI.Model.ViewModel.csproj", "{CCACDA78-219D-4A96-B566-C730FE88EA70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Movie.UI.Model.ViewModel", "Movie.UI.Model.ViewModel\Movie.UI.Model.ViewModel.csproj", "{CCACDA78-219D-4A96-B566-C730FE88EA70}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Movie.Core.Exception", "Movie.Core.Exception", "{4A5A5E8F-4ACC-4FA3-B21D-7C68EB8A5172}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movie.Core.Exception.Base", "Movie.Core.Exception.Base\Movie.Core.Exception.Base.csproj", "{9346FE4C-C7D2-40B1-ADF0-4D32EE7E1DB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Movie.Core.Exception.Base", "Movie.Core.Exception.Base\Movie.Core.Exception.Base.csproj", "{9346FE4C-C7D2-40B1-ADF0-4D32EE7E1DB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movie.Core.Exception.BusinessException", "Movie.Core.Exception.BusinessException\Movie.Core.Exception.BusinessException.csproj", "{B02E439B-C4AC-43B0-88D5-E72F36746094}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Movie.Core.Exception.BusinessException", "Movie.Core.Exception.BusinessException\Movie.Core.Exception.BusinessException.csproj", "{B02E439B-C4AC-43B0-88D5-E72F36746094}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Movie.Core.Exception.DatabaseException", "Movie.Core.Exception.DatabaseException\Movie.Core.Exception.DatabaseException.csproj", "{BB4573C0-94B6-4ACB-A579-EAD135330A28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Movie.Core.Exception.DatabaseException", "Movie.Core.Exception.DatabaseException\Movie.Core.Exception.DatabaseException.csproj", "{BB4573C0-94B6-4ACB-A579-EAD135330A28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

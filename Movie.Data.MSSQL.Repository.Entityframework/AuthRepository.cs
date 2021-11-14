@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace Movie.Data.MSSQL.Repository.Entityframework
 {
-    public class UserRepository : EntityframeworkRepositoryBase<User, int>, IUserRepository
+    public class AuthRepository : EntityframeworkRepositoryBase<User, int>, IAuthRepository
     {
-        public UserRepository(MovieDbContext context) : base(context)
+        public AuthRepository(MovieDbContext context) : base(context)
         {
         }
 
@@ -31,11 +31,11 @@ namespace Movie.Data.MSSQL.Repository.Entityframework
         public async Task<bool> Any(Expression<Func<User, bool>> filter)
         {
 
-                using (var context = new MovieDbContext())
-                {
-                    return await context.Set<User>().Where(filter).AnyAsync();
-                }
-            
+            using (var context = new MovieDbContext())
+            {
+                return await context.Set<User>().Where(filter).AnyAsync();
+            }
+
         }
 
         public void Delete(User entity)

@@ -9,8 +9,8 @@ using Movie.Business.Manager.ServiceCollectionExtensions;
 using Movie.Data.MSSQL.Context.Entityframework;
 using Movie.Data.MSSQL.Validation.ServiceCollectionExtensions;
 using Movie.Mapper.ServicesCollectionExtesions;
+using Movie.UI.Service.API.Extensions;
 using Newtonsoft.Json;
-
 namespace Movie.UI.Service.API
 {
     public class Startup
@@ -25,8 +25,12 @@ namespace Movie.UI.Service.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var secretKey = Configuration.GetSection("AppSettings:SecretKey").Value.ToString();
+
             services.AddDbContext<MovieDbContext>(op =>
               op.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+
 
             services.AddControllers()
                 .AddMSSQLValidator(services)
@@ -39,8 +43,8 @@ namespace Movie.UI.Service.API
             });
 
             services.AddAutoMapper();
-
             services.AddBusinessManager();
+            services.AddAuthenticationServices(secretKey);
 
         }
 

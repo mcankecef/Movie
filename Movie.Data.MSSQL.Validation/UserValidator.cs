@@ -7,13 +7,11 @@ namespace Movie.Data.MSSQL.Validation
     {
         public UserValidator()
         {
-            RuleFor(user => user.Password)
-                .NotNull()
-                .NotEmpty();
-            RuleFor(user => user.Email)
-                .NotNull()
-                .NotEmpty()
-                .MaximumLength(100);
+            //RuleFor(user => user.Password)
+            //    .NotNull()
+            //    .NotEmpty();
+            //RuleFor(user => user.Email)
+            //   .
         }
     }
 }

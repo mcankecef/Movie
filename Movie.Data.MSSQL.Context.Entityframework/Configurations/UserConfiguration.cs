@@ -19,14 +19,14 @@ namespace Movie.Data.MSSQL.Context.Entityframework.Configurations
                 .IsRequired()
                 .HasMaxLength(100);
 
-            builder.Property(e => e.Password)
-                .IsRequired()
-                .HasMaxLength(32)
-                .IsFixedLength(true);
+            //builder.Property(e => e.Password)
+            //    .IsRequired()
+            //    .HasMaxLength(32)
+            //    .IsFixedLength(true);
 
-            builder.Property(e => e.Status)
-                .IsRequired()
-                .HasDefaultValueSql("((1))");
+            //builder.Property(e => e.Status)
+            //    .IsRequired()
+            //    .HasDefaultValueSql("((1))");
 
             builder.HasIndex(e => e.Email)
                 .IsUnique();

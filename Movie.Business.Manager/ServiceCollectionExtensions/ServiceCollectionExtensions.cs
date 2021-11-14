@@ -23,6 +23,13 @@ namespace Movie.Business.Manager.ServiceCollectionExtensions
             services.AddScoped<IDirectoryRepository, DirectoryRepository>();
             services.AddScoped<IDirectoryManager, DirectoryManager>();
 
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserManager, UserManager>();
+
+            services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IAuthManager, AuthManager>();
+
+
             return services;
         }
     }
